@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>px-dropdown Demo</title>
+    <!-- Requires Webcomponents.js polyfill is provided by the page for browsers that don't support html imports -->
+    <script src="../webcomponentsjs/webcomponents-lite.min.js"></script>
+      <!-- Import custom element. Note: see comment about relative paths to dependencies in the *.html file referenced below -->
+    <link rel="import" href="../polymer/polymer.html" />
+    <link rel="import" href="px-dropdown.html" />
+    <link rel="import" href="px-dropdown-chevron.html" />
+    <link rel="import" href="px-dropdown-content.html" />
+    <link rel="import" href="px-dropdown-text.html" />
+    <link rel="import" href="../px-theme/px-theme.html" />
+    <style>
+    .cont {
+      width: 100px;
+      background-color: #f7f7fc;
+      margin-left: 30px;
+    }
+
+    </style>
+  </head>
+  <body unresolved>
+    <h3>Demo</h3>
+    <p>
+      Although related, examples are /not/ the same as the test fixtures. Tests are tests, examples are examples.
+    </p>
+    <p>
+      Also see the <a href="index.html">documentation</a> and the <a href="test/fixture.html">UI test fixture</a>.
+    </p>
+    <div class="cont">
+      <px-dropdown>
+        <px-dropdown-text class="px-dropdown-text">Text</px-dropdown-text>
+        <px-dropdown-chevron class="px-dropdown-chevron"></px-dropdown-chevron>
+        <px-dropdown-content class="px-dropdown-content" extend-dropdown="true" extend-dropdown-by="15" max-cont-character-width="10" items='[{"key":"one", "val": "One"}, {"key":"two", "val": "Two"}, {"key":"three", "val": "Three"}, {"key":"four", "val": "How now brown cow"}]'>
+        </px-dropdown-content>
+      </px-dropdown>
+    </div>
+  </body>
+</html>

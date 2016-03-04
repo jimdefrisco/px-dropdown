@@ -1,0 +1,37 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. ui tests, examples), we assume the server is started with
+    'grunt depserve' (or similar server setup) to enable correct finding of bower dependencies for local runs
+    See https://github.sw.ge.com/jreichenberg/grunt-dep-serve#why-do-we-need-this
+-->
+<link rel="import" href="../polymer/polymer.html" />
+<!--
+Element providing the text for the px-dropdown element
+
+##### Usage
+
+    <px-dropdown-text class="px-dropdown-text">Text Goes Here</px-dropdown-text>
+
+@element px-dropdown-text
+@blurb Element to contain clickable text of a dropdown menu.
+@homepage index.html
+@demo demo.html
+-->
+<dom-module id="px-dropdown-text">
+  <link rel="import" type="css" href="css/px-dropdown-text.css" />
+  <template>
+      <span class="flex__item px-dropdown-text u-ph--"><content></content></span>
+  </template>
+</dom-module>
+<script>
+  Polymer({
+    is: 'px-dropdown-text',
+    /**
+     * Properties block, expose attribute values to the DOM via 'reflect'
+     *
+     * @property properties
+     * @type Object
+     */
+    properties: {}
+  });
+</script>

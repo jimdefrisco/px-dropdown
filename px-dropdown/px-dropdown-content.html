@@ -1,0 +1,191 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. ui tests, examples), we assume the server is started with
+    'grunt depserve' (or similar server setup) to enable correct finding of bower dependencies for local runs
+    See https://github.sw.ge.com/jreichenberg/grunt-dep-serve#why-do-we-need-this
+-->
+<link rel="import" href="../polymer/polymer.html" />
+<link rel="import" href="../px-tooltip/px-tooltip.html" />
+<!--
+Element providing the content for the px-dropdown element
+
+##### Usage
+
+    <px-dropdown-content class="px-dropdown-content" extend-dropdown="true" extend-dropdown-by="40" items='[{"key":"one", "val": "One"}, {"key":"two", "val": "Two"}]'>
+
+@element px-dropdown-content
+@blurb Element to contain contents of a dropdown menu.
+@homepage index.html
+@demo demo.html
+-->
+<dom-module id="px-dropdown-content">
+  <link rel="import" type="css" href="css/px-dropdown-content.css" />
+  <template>
+      <div class="px-dropdown--content" id="dropdown" hidden$="{{!menuOpen}}">
+        <ul class="px-dropdown--list list-bare">
+          <template is="dom-repeat" items="{{items}}">
+            <li class="px-dropdown--listitem u-ph-- u-pt--" on-tap="_clickItem">{{item.val}}
+              <template is="dom-if" if="{{_includeTooltip(item.val)}}">
+                <px-tooltip tooltip-message="{{item.val}}"></px-tooltip>
+              </template>
+            </li>
+          </template>
+        </ul>
+      </div>
+  </template>
+</dom-module>
+<script>
+  Polymer({
+
+    is: 'px-dropdown-content',
+
+    /**
+     * Properties block, expose attribute values to the DOM via 'reflect'
+     *
+     * @property properties
+     * @type Object
+     */
+    properties: {
+      /**
+       * Array that contains the list of items which show up in the dropdown
+       *
+       * @type Array
+       * @default []
+       */
+      items: {
+        type: Array,
+        notify: true,
+        value: function() {
+          return [];
+        }
+      },
+      /**
+       * Used to check if the dropdown is currently open or closed.
+       * notifies and shows/hides the dropdown.
+       * @type Boolean
+       * @default false
+       */
+      menuOpen: {
+        type: Boolean,
+        notify: true,
+        value: false
+      },
+      /**
+       * Maximum number of characters in a container.
+       * Will be used to calculate whether the dropdown will have a tooltip and ellipsis.
+       * Optional.
+       * @type Number
+       * @default
+       */
+      maxContCharacterWidth: {
+        type: Number,
+        value: 0
+      },
+      /**
+       * An attribute which specifies if the dropdown should extend in width
+       * beyond the cell it's dropping from.
+       * Optional.
+       * @type Boolean
+       * @default: false
+       */
+      extendDropdown: {
+        type: Boolean,
+        value: false,
+      },
+      /**
+       * An attribute which specifies how many pixels the dropdown
+       * should extend beyond the cell it's dropping from.
+       * Optional.
+       * @type Number
+       * @default: 15
+       */
+      extendDropdownBy: {
+        type: Number,
+        value: 15,
+      },
+      /**
+       * An attribute which specifies whether the dropdown is
+       * extended in width from its container.
+       * @type Boolean
+       * @default: false
+       */
+      extended : {
+        type: Boolean,
+        value: false
+      }
+    },
+    /**
+     * Opens the dropdown menu
+     *
+     * @method open
+     */
+    open: function() {
+      this.menuOpen = true;
+      this._extendDropdown();
+    },
+    /**
+     * Closes the dropdown menu
+     *
+     * @method close
+     */
+    close: function() {
+      this.menuOpen = false;
+    },
+    /**
+     * Checks if the length of the value in the dropdown list is longer than
+     * the allowed Max length, passed in as maxContCharacterWidth.
+     * If it is, px-tooltip is included with the component.
+     *
+     * @method _includeTooltip
+     */
+    _includeTooltip: function(value) {
+      //find the container max character passed in
+      var maxContWidth = this.maxContCharacterWidth;
+      if(value === null || value === undefined || typeof value === 'string' && value.trim().length === 0) {
+        return false;
+      }
+      //find out if the character count in the passed value is higher than the allowed max. if it is, we show the tooltip.
+      return (maxContWidth !== undefined && maxContWidth !== null && maxContWidth !== 0) ? (value.length > maxContWidth) : false;
+    },
+    /**
+     * This function is called on an item click, and calls the fire event
+     * as well as closes the dropdown. Finally, it flips the opened flag.
+     *
+     * @method _clickItem
+     */
+    _clickItem: function(evt) {
+      this._clickFire(evt);
+      this.close();
+      this.fire('dropdown_flip', true);
+      //this.parentNode.opened = !this.parentNode.opened;
+    },
+    /**
+     * This fires a notification that happens on click, allowing the evt to be
+     * picked up by an external developer.
+     *
+     * @method _clickFire
+     */
+    _clickFire: function(evt) {
+      this.fire('px-dropdown-click', evt);
+    },
+    /**
+     * This allows for the dropdown to be extended to make sure it's more distinguishable
+     * from its container.
+     *
+     * @method _extendDropdown
+     */
+    _extendDropdown: function() {
+      if (!this.extended && this.extendDropdown) {
+        //get the width of the dropdown, and how much to extend it by.
+        var width = getComputedStyle(this.$.dropdown).width,
+            extendBy = this.extendDropdownBy;
+        //remove the px string from it, and convert it into an int
+        width = parseInt(width.substring(0, width.length-2));
+
+        //set the flag that we've extended the dropdown. without this, it'll keep extending.
+        this.extended = true;
+        this.$.dropdown.style.width = String(width + extendBy) + 'px';
+      }
+    }
+  });
+</script>
