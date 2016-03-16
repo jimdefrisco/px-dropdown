@@ -17,7 +17,7 @@
     "polymer": "~1.2.3",
     "px-theme": "https://github.com/predixDev/px-theme.git#~0.4.2",
     "px-tooltip": "https://github.com/PredixDev/px-tooltip.git#~0.2.0",
-    "px-dropdown": "https://github.com/predixDev/px-dropdown"
+    "px-dropdown": "~0.1.0"
   },
   "devDependencies": {
     "px-list-ui-design": "https://github.com/predixDev/px-list-ui-design.git#~v0.3.8",
