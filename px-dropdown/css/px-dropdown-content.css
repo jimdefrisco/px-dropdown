@@ -762,7 +762,13 @@ textarea {
 .px-dropdown-content {
   white-space: nowrap;
   text-overflow: ellipsis;
-  overflow: hidden; }
+  overflow: hidden;
+  position: relative; }
+
+#dropdown {
+  left: 0;
+  position: absolute;
+  height: auto; }
 
 /*------------------------------------*    #PX-META-LISTS-DESIGN
 \*------------------------------------*/
@@ -843,15 +849,15 @@ textarea {
   cursor: pointer;
   border-radius: 3px;
   border: 1px solid #b1b1bc;
-  max-height: 222px;
+  max-height: 14.8rem;
   overflow-y: auto; }
 
-.px-dropdown--listitem:hover {
-  background-color: #0a9ec1;
-  color: white; }
-
-.px-dropdown--listitem:first-child {
-  border-radius: 4px 4px 0 0; }
-
-.px-dropdown--listitem:last-child {
-  border-radius: 0 0 4px 4px; }
+.px-dropdown--listitem {
+  overflow-y: visible; }
+  .px-dropdown--listitem:hover {
+    background-color: #0a9ec1;
+    color: white; }
+  .px-dropdown--listitem:first-child {
+    border-radius: 4px 4px 0 0; }
+  .px-dropdown--listitem :last-child {
+    border-radius: 0 0 4px 4px; }

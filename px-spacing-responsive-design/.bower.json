@@ -1,20 +1,21 @@
 {
-  "name": "px-spacing-design",
-  "version": "0.3.6",
+  "name": "px-spacing-responsive-design",
+  "version": "0.3.7",
   "authors": [
     "General Electric",
     "Harry Roberts <harry@csswizardry.com>"
   ],
-  "description": "Spacing helper classes for Predix Experience",
-  "main": "_trumps.spacing.scss",
+  "description": "Responsively controlled spacing helper classes for Predix Experience",
+  "main": "_trumps.spacing-responsive.scss",
   "keywords": [
     "sass",
     "px",
+    "responsive",
     "spacing"
   ],
   "license": "Apache 2",
-  "homepage": "https://github.com/PredixDev/px-spacing-design.git",
-  "private": true,
+  "homepage": "https://github.com/PredixDev/px-spacing-responsive-design.git",
+  "private": false,
   "ignore": [
     "**/.*",
     "node_modules",
@@ -23,15 +24,17 @@
     "tests"
   ],
   "dependencies": {
-    "px-defaults-design": "https://github.com/PredixDev/px-defaults-design.git#~0.2.0"
+    "inuit-responsive-settings": "~0.1.5",
+    "inuit-responsive-tools": "~0.1.2",
+    "px-spacing-design": "https://github.com/PredixDev/px-spacing-design.git#~0.3.0"
   },
-  "_release": "0.3.6",
+  "_release": "0.3.7",
   "_resolution": {
     "type": "version",
-    "tag": "v0.3.6",
-    "commit": "73f0a8d4c8b00eb144a6d71664a9a07e6b37ec52"
+    "tag": "v0.3.7",
+    "commit": "63618819fb8f16dfb5b2ddd93b5d39f58e3a40b8"
   },
-  "_source": "https://github.com/predixdev/px-spacing-design.git",
-  "_target": "~0.3.5",
-  "_originalSource": "https://github.com/predixdev/px-spacing-design.git"
+  "_source": "https://github.com/PredixDev/px-spacing-responsive-design.git",
+  "_target": "~0.3.0",
+  "_originalSource": "https://github.com/PredixDev/px-spacing-responsive-design.git"
 }

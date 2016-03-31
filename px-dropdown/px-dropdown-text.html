@@ -19,18 +19,58 @@ Element providing the text for the px-dropdown element
 <dom-module id="px-dropdown-text">
   <link rel="import" type="css" href="css/px-dropdown-text.css" />
   <template>
-      <div class="flex__item px-dropdown-text u-p--"><content></content></div>
+      <div class="flex__item px-dropdown-text u-p--">{{displayValue}}</div>
+      <template is="dom-if" if="{{_includeTooltip(displayValue)}}">
+          <px-tooltip tooltip-message="{{displayValue}}" orientation="top"></px-tooltip>
+      </template>
   </template>
 </dom-module>
 <script>
   Polymer({
     is: 'px-dropdown-text',
     /**
-     * Properties block, expose attribute values to the DOM via 'reflect'
+     * Properties block,
      *
      * @property properties
      * @type Object
      */
-    properties: {}
+    properties: {
+      /**
+       * @property displayValue
+       * @type String
+       * @default ''
+       */
+      displayValue: {
+        type: String,
+        notify: true,
+        value: ''
+      }
+    },
+    attached: function() {
+      this.addEventListener('maxContCharacterWidth', this._setMaxChar);
+    },
+    detached: function() {
+      this.removeEventListener('maxContCharacterWidth', this._setMaxChar);
+    },
+    /**
+     * @method _includeTooltip
+     *
+     * This method is called when the display value is calculated, to check if
+     * we need to display the tooltip or not.
+     */
+    _includeTooltip: function() {
+      return (this.displayValue.length > this.maxContCharacterWidth);
+    },
+    /**
+     * @method _setMaxChar
+     *
+     * This method is called when the event listener receives an update with
+     * the new maxContCharacterWidth.
+     * @param value
+     * @type evt
+     */
+    _setMaxChar: function(value) {
+      this.set('maxContCharacterWidth', value.detail.maxContCharacterWidth);
+    }
   });
 </script>

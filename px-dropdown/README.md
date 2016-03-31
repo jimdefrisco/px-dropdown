@@ -1,10 +1,10 @@
 # Px-dropdown
 
-Px-dropdown is a select component in the Predix UI platform.
+Px-dropdown is a select-like component in the Predix UI platform.
 
 ## Overview
 
-px-dropdown is an element which can be placed in any elements, and opens a customizable dropdown list.
+px-dropdown is an element which can be placed in any element, and opens a customizable dropdown list.
 
 ## Usage
 
@@ -34,7 +34,7 @@ Finally, use the component in your application:
 
 ```
 <px-dropdown>
-  <px-dropdown-text class="px-dropdown-text">Text</px-dropdown-text>
+  <px-dropdown-text class="px-dropdown-text" display-value="Text"></px-dropdown-text>
   <px-dropdown-content class="px-dropdown-content" max-cont-character-width="10"
   extend-dropdown="true" extend-dropdown-by="15" items='[{"key":"one", "val": "One"}, {"key":"two", "val": "Two"}, {"key":"three", "val": "Three"}, {"key":"four", "val": "How now brown cow"}]'>
   </px-dropdown-content>
@@ -45,35 +45,6 @@ Finally, use the component in your application:
 <hr />
 
 ## Attributes (on px-dropdown-content)
-
-#### max-cont-character-width
-
-*Type:* **Number** - (*Optional*) - *Default:* "0"
-
-A number which represents the number of characters allowed in the dropdown before the string is clipped, and has an ellipsis added to the end of it. Clipping a string means a px-tooltip component appears on hover with the full - unclipped - string in it.
-
-
-```
-<px-dropdown-content  
-  max-cont-character-width="10"
-  .... >
-....
-</px-dropdown-content>
-
-```
-
-#### items
-
-*Type:* **Object** - (*Required*) - *Default:* ""
-
-An object Literal which holds the list of items that should appear in the dropdown.
-
-```
-<px-dropdown-content
-...
- items='[{"key":"one", "val": "One"}, {"key":"two", "val": "Two"}, {"key":"three", "val": "Three"}, {"key":"four", "val": "How now brown cow"}]'>
-</px-dropdown-content>
-```
 
 #### extend-dropdown
 
@@ -100,7 +71,81 @@ An attribute which specifies the amount -in pixels - that the dropdown should ex
 </px-dropdown--content>
 ```
 
+#### items
+
+*Type:* **Object** - (*Required*) - *Default:* ""
+
+This is an array that holds either an object literal with a list of items, or an array of strings.
+Please note that if you pass in an array of items, the value *key* must be set to **'val'**.
+
+```
+<px-dropdown-content
+...
+ items='[{"key":"one", "val": "One"}, {"key":"two", "val": "Two"}, {"key":"three", "val": "Three"}, {"key":"four", "val": "How now brown cow"}]'>
+</px-dropdown-content>
+```
+
+#### max-cont-character-width
+
+*Type:* **Number** - (*Optional*) - *Default:* "0"
+
+A number which represents the number of characters allowed in the dropdown before the string is clipped, and has an ellipsis added to the end of it. Clipping a string means a px-tooltip component appears on hover with the full - unclipped - string in it.
+
+
+```
+<px-dropdown-content  
+  max-cont-character-width="10"
+  .... >
+....
+</px-dropdown-content>
+
+```
 <br />
+
+## Attributes (on px-dropdown)
+
+#### hide-chevron
+
+*Type:* **Boolean** - (*Optional*) - *Default*: false
+
+an attribute that allows you to hide the chevron.
+
+```
+<px-dropdown hide-chevron="true">
+  ...
+</px-dropdown>
+
+```
+
+#### bound-target
+
+*Type:* **HTMLElement** - (*Optional*) - *Default*: null
+
+If this attribute is set, its bounds will be used to contain the dropdown. The dropdown will resize and position itself to always be within those bounds.
+This is typically a reference to an element, but it can also just be an element id.
+
+```
+<div id="someContainer">
+  <px-dropdown bound-target="someContainer">
+    ...
+  </px-dropdown>
+</div>
+
+```
+
+## Attributes (on px-dropdown-text)
+
+#### display-value
+
+*Type:* **String** - (*Optional*) - *Default*: ''
+
+An attribute that is used to display the initial text showing up in the dropdown.
+
+```
+<px-dropdown-text display-value="Text"></px-dropdown-text>
+
+```
+
 <hr />
 
 

@@ -22,14 +22,13 @@ Element providing the content for the px-dropdown element
   <template>
       <div class="px-dropdown--content" id="dropdown" hidden$="{{!menuOpen}}">
         <ul class="px-dropdown--list list-bare">
-          <template is="dom-repeat" items="{{items}}">
+          <template is="dom-repeat" items={{computedItems}}>
             <li class="px-dropdown--listitem u-p--" on-tap="_clickItem">{{item.val}}
               <template is="dom-if" if="{{_includeTooltip(item.val)}}">
-                <px-tooltip tooltip-message="{{item.val}}"></px-tooltip>
+                  <px-tooltip tooltip-message="{{item.val}}"></px-tooltip>
               </template>
             </li>
           </template>
-        </ul>
       </div>
   </template>
 </dom-module>
@@ -57,6 +56,30 @@ Element providing the content for the px-dropdown element
         value: function() {
           return [];
         }
+      },
+      /**
+       * This property stores the items array, after it's been
+       * changed over to be an array of objects.
+       *
+       * @type Array
+       * @default []
+       */
+      computedItems: {
+        type: Array,
+        value: function() {return [];},
+        computed: '_computedItems(items)'
+      },
+      /**
+       * The initial selected value (if any) of an item in the dropdown
+       * @type String
+       * @default ''
+       * @notify true
+       */
+      selectedValue: {
+        type: String,
+        notify: true,
+        value: '',
+        observer: '_updateSelectedItem'
       },
       /**
        * Used to check if the dropdown is currently open or closed.
@@ -111,7 +134,32 @@ Element providing the content for the px-dropdown element
       extended : {
         type: Boolean,
         value: false
+      },
+      /**
+       * An attribute which specifies whether the dropdown has been opened at
+       * least once
+       * @type Boolean
+       * @default: false
+       */
+      _hasBeenOpened : {
+        type: Boolean,
+        value: false
       }
+    },
+    attached: function() {
+      if (this.maxContCharacterWidth > 0) {
+        this._fireMaxChar();
+      }
+    },
+    /**
+     * Fire an event that has a maxContCharacterWidth into px-text
+     *
+     * @method _fireMaxChar
+     */
+    _fireMaxChar: function() {
+      var parent = this.parentNode,
+          px_text = Polymer.dom(parent).querySelector('px-dropdown-text');
+      px_text.fire('maxContCharacterWidth', {maxContCharacterWidth : this.maxContCharacterWidth});
     },
     /**
      * Opens the dropdown menu
@@ -120,7 +168,14 @@ Element providing the content for the px-dropdown element
      */
     open: function() {
       this.menuOpen = true;
-      this._extendDropdown();
+
+      if(!this._hasBeenOpened) {
+
+        //do first adjustments we wont need ot do in the future
+        this.adjustHeight();
+        this._extendDropdown();
+      }
+      this.set('_hasBeenOpened', true);
     },
     /**
      * Closes the dropdown menu
@@ -131,11 +186,38 @@ Element providing the content for the px-dropdown element
       this.menuOpen = false;
     },
     /**
+     * size the content to height to fit maxHeight and do the height adjustments
+     * for scrolling
+     *
+     * @method sizeHeight
+     * @param maxHeight
+     */
+    sizeHeight: function(maxHeight) {
+      var currentHeight = parseInt(this.$.dropdown.getBoundingClientRect().height);
+
+      //limit height
+      if(currentHeight > maxHeight) {
+        this.$.dropdown.style.height = maxHeight + 'px';
+      }
+      else {
+        this.adjustHeight();
+      }
+    },
+    /**
+     * reset the height of the content
+     *
+     * @method resetHeight
+     */
+    resetHeight: function() {
+      this.$.dropdown.style.height = '';
+    },
+    /**
      * Checks if the length of the value in the dropdown list is longer than
      * the allowed Max length, passed in as maxContCharacterWidth.
      * If it is, px-tooltip is included with the component.
      *
      * @method _includeTooltip
+     * @param value
      */
     _includeTooltip: function(value) {
       //find the container max character passed in
@@ -156,7 +238,7 @@ Element providing the content for the px-dropdown element
       this._clickFire(evt);
       this.close();
       this.fire('dropdown_flip', true);
-      //this.parentNode.opened = !this.parentNode.opened;
+      this.set('selectedValue', evt.target.firstChild.textContent);
     },
     /**
      * This fires a notification that happens on click, allowing the evt to be
@@ -178,13 +260,65 @@ Element providing the content for the px-dropdown element
         //get the width of the dropcell, and how much to extend it by.
         var parent = this.parentNode,
             dropcell = parent.$.dropcell,
-            width = getComputedStyle(dropcell).width.replace('px',''),
+            width = dropcell.getBoundingClientRect().width,
             extendBy = this.extendDropdownBy;
-
         //set the flag that we've extended the dropdown. without this, it'll keep extending.
         this.extended = true;
         this.$.dropdown.style.width = parseInt(width) + parseInt(extendBy) + 'px';
       }
-    }
+    },
+    /**
+     * This allows for the dropdown height to be adjusted by reducing it by half
+     * an item's height if the dropdown has scrollbars so it's more obvious we
+     * can scroll
+     * @method adjustHeight
+     */
+    adjustHeight: function() {
+      var currentHeight = parseInt(this.$.dropdown.getBoundingClientRect().height);
+
+      //do we have a scrollbar?
+      if(currentHeight < this.$.dropdown.scrollHeight) {
+
+        //reduce height by half the size of an item
+        var parent = this.parentNode,
+            dropcell = parent.$.dropcell,
+            reduceBy = parseInt(dropcell.getBoundingClientRect().height/2);
+
+        this.$.dropdown.style.height = currentHeight - reduceBy + 'px';
+      }
+    },
+    /**
+     * This function finds out whether the passed items array is
+     * an array of objects, or an array of strings. if it is strings
+     * they are converted to objects.
+     * @method _computedItems
+     * @param items (Array)
+     */
+    _computedItems: function(items) {
+      if (typeof this.items[0] === 'string') {
+        var len = items.length,
+            i = 0,
+            computedItemsArr = [];
+
+            for (i; i < len; i++) {
+              computedItemsArr.push({val:items[i]});
+            }
+            return computedItemsArr;
+      } else {
+        return this.items;
+      }
+    },
+    /**
+     * This function updates the displayed text on the visible portion of the closed dropdown.
+     * @method _updateSelectedItem
+     *
+     */
+    _updateSelectedItem: function() {
+      var parent = this.parentNode,
+          text = Polymer.dom(parent).querySelector('px-dropdown-text');
+          if (text && this.selectedValue) {
+            text.set('displayValue', this.selectedValue);
+          }
+        }
   });
 </script>
