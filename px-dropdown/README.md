@@ -33,8 +33,7 @@ Second, import the component to your application with the following tag in your 
 Finally, use the component in your application:
 
 ```
-<px-dropdown>
-  <px-dropdown-text class="px-dropdown-text" display-value="Text"></px-dropdown-text>
+<px-dropdown display-value="Text">
   <px-dropdown-content class="px-dropdown-content" max-cont-character-width="10"
   extend-dropdown="true" extend-dropdown-by="15" items='[{"key":"one", "val": "One"}, {"key":"two", "val": "Two"}, {"key":"three", "val": "Three"}, {"key":"four", "val": "How now brown cow"}]'>
   </px-dropdown-content>
@@ -44,7 +43,14 @@ Finally, use the component in your application:
 <br />
 <hr />
 
+Read the full API and view the demo [here](https://predixdev.github.io/px-dropdown).
+
 ## Attributes (on px-dropdown-content)
+
+#### selection-occured
+*Type:* **boolean** - (*Optional, Read Only* ) - *Default:* ""
+
+A read only attribute that can be used to find out whether the user has selected anything from the dropdown. Should be used programmatically, and NOT on HTML tag itself.
 
 #### extend-dropdown
 
@@ -100,6 +106,7 @@ A number which represents the number of characters allowed in the dropdown befor
 </px-dropdown-content>
 
 ```
+
 <br />
 
 ## Attributes (on px-dropdown)
@@ -133,6 +140,51 @@ This is typically a reference to an element, but it can also just be an element 
 
 ```
 
+#### prevent-close-on-outside-click
+
+*Type:* **Boolean** - (*Optional*) - *Default*: false
+
+Set to true to disable closing the dropdown by clicking outside it.
+
+```
+<px-dropdown prevent-close-on-outside-click="true">
+  ...
+</px-dropdown>
+
+```
+
+#### display-value
+
+*Type:* **String** - (*Optional*) - *Default*: ''
+
+An attribute that is propagated to px-dropdown-text to display the initial text showing up in the dropdown.
+
+```
+<px-dropdown display-value="Text">
+  ...
+</px-dropdown>
+
+```
+
+#### content-anchor
+
+*Type:* **HTMLElement** - (*Optional*) - *Default*: null
+
+An attribute which specifies the anchor element the content will use to position itself (below or above). Won't be used if null
+
+#### allow-outside-scroll
+
+*Type:* **Boolean** - (*Optional*) - *Default*: false
+
+By default, the dropdown will constrain scrolling on the page to itself when opened. Set to true in order to prevent scroll from being constrained to the dropdown when it opens.
+
+```
+<px-dropdown allow-outside-scroll="true">
+  ...
+</px-dropdown>
+
+```
+
 ## Attributes (on px-dropdown-text)
 
 #### display-value
@@ -142,7 +194,9 @@ This is typically a reference to an element, but it can also just be an element 
 An attribute that is used to display the initial text showing up in the dropdown.
 
 ```
-<px-dropdown-text display-value="Text"></px-dropdown-text>
+<px-dropdown-text display-value="Text">
+  ...
+</px-dropdown-text>
 
 ```
 
