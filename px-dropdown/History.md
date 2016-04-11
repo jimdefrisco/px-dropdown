@@ -1,3 +1,12 @@
+v0.7.1
+================
+* updated readme and added stopPropagation on internal events
+
+v0.7.0
+================
+* removed px-dropdown-lock-width
+* added readonly 'value' attribute on dropdown, computed from display-value. Fire "change" event on dropdown when value changes
+
 v0.6.2
 ================
 * more data-table fixes. Fire px-dropdown-lock-width event when requiring a container to lock its width to the dropdown width.

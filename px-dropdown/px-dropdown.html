@@ -154,6 +154,20 @@ Element providing a dropdown solution.
       contentAnchor: {
         type: HTMLElement,
         value: function() { return null;}
+      },
+      /**
+       * Reflects the currently selected value of the dropdown. This will mostly
+       * be the same as displayValue but is used internally
+       * @param value
+       * @type string
+       * @default ''
+       */
+      value: {
+        type: String,
+        value: '',
+        computed: '_computeValue(displayValue)',
+        notify: true,
+        readOnly: true
       }
     },
     observers: [
@@ -161,7 +175,6 @@ Element providing a dropdown solution.
     ],
     listeners: {
       'dropdown_flip': '_flipOpened',
-      'resize':  '_reset',
       'dropdown_content_request_size':  '_provideCellSize',
       'dropdown_content_value_changed': '_newTextValue',
       'maxContCharacterWidth': '_newMaxContCharWidth'
@@ -187,6 +200,9 @@ Element providing a dropdown solution.
     */
     _newTextValue: function(evt) {
       this.set('displayValue',evt.detail.textValue);
+      this.fire('change');
+
+      evt.stopPropagation();
     },
     /**
     * This function is called when we have a maximum character width
@@ -196,6 +212,7 @@ Element providing a dropdown solution.
     */
     _newMaxContCharWidth: function(evt) {
       this.set('_maxCharWidth', evt.detail.maxContCharacterWidth);
+      evt.stopPropagation();
     },
     /**
     * This function provide the cell size to the dropdown content
@@ -209,6 +226,8 @@ Element providing a dropdown solution.
 
       evt.detail.pxContent.dropCellWidth = rect.width;
       evt.detail.pxContent.dropCellHeight = rect.height;
+
+      evt.stopPropagation();
     },
     /**
     * This function checks whether the chevron should be visible or
@@ -269,6 +288,9 @@ Element providing a dropdown solution.
             Polymer.dom(this.ownerDocument).querySelector('#' + boundTarget);
       }
     },
+    _computeValue: function(displayValue) {
+      return displayValue;
+    },
    /**
    * This function is called when the dropdown trigger/chevron is clicked, and
    * it either opens or closes (shows/hides) the content.
@@ -281,26 +303,26 @@ Element providing a dropdown solution.
       var content = Polymer.dom(this).querySelector(".px-dropdown-content");
       if (!this.opened) {
         content.open();
-        var width = this.getBoundingClientRect().width;
-        //require container to lock width if necessary
-        this.fire('px-dropdown-lock-width', {currentWidth: width});
-        this.$$('px-dropdown-text').forceSetWidth();
         this._setPosition();
       } else {
         content.close();
         this._reset();
       }
       this._flipOpened();
-      this.fire('dropdownOpen', evt);
+      this.fire('dropdownStateChanged', evt);
     },
     /**
     * This function flips the "opened" property
     *
     * @method _flipOpened
     */
-    _flipOpened: function() {
+    _flipOpened: function(evt) {
       this._fireChevron('opened');
       this.opened = !this.opened;
+
+      if(evt) {
+        evt.stopPropagation();
+      }
     },
     /**
     * This function checks to make sure the chevron exists, and if it does,
