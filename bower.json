@@ -1,6 +1,6 @@
 {
   "name": "px-dropdown",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "main": [
     "px-dropdown.html"
   ],
@@ -27,12 +27,5 @@
     "px-forms-design": "https://github.com/predixDev/px-forms-design.git#~0.3.11",
     "px-meta-lists-design": "https://github.com/predixDev/px-meta-lists-design.git#~0.3.2",
     "px-starter-kit-design": "https://github.com/predixDev/px-starter-kit-design.git#~0.4.9"
-  },
-  "resolutions": {
-    "web-animations-js": "^2.2.0",
-    "px-tooltip": "~0.6.0",
-    "px-theme": "~0.7.0",
-    "px-dropdown": "^0.9.2",
-    "polymer": "^1.0.0"
   }
 }
