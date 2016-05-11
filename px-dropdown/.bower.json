@@ -1,6 +1,6 @@
 {
   "name": "px-dropdown",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "main": [
     "px-dropdown.html"
   ],
@@ -11,7 +11,8 @@
     "sass",
     "bower_components",
     "node_modules",
-    "test"
+    "test",
+    "OSS_Notice.pdf"
   ],
   "dependencies": {
     "polymer": "~1.4.0",
@@ -29,11 +30,11 @@
     "px-starter-kit-design": "https://github.com/predixDev/px-starter-kit-design.git#~0.4.9"
   },
   "homepage": "https://github.com/predixDev/px-dropdown",
-  "_release": "0.9.4",
+  "_release": "0.9.5",
   "_resolution": {
     "type": "version",
-    "tag": "v0.9.4",
-    "commit": "6d4cb3b61ec0aba4fee7ff9adb2d5d03ea0ac324"
+    "tag": "v0.9.5",
+    "commit": "3a7b0bfc957e360c4b9f4dbb6bd27317f3ff641e"
   },
   "_source": "https://github.com/predixDev/px-dropdown.git",
   "_target": "^0.9.2",
