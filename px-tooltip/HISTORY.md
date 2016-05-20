@@ -1,3 +1,19 @@
+v0.6.8
+=================
+* remove calculateRem from Sass
+
+v0.6.6
+=================
+* updated readme
+
+v0.6.6
+=================
+* PR to make sure tooltip is hidden when item is clicked.
+
+v0.6.5
+=================
+* PR to fix max tooltip width.
+
 v0.6.4
 =================
 * added oss_notice to bower ignore

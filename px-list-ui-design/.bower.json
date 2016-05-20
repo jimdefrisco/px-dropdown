@@ -1,6 +1,6 @@
 {
   "name": "px-list-ui-design",
-  "version": "0.3.10",
+  "version": "0.3.11",
   "authors": [
     "General Electric",
     "Harry Roberts <harry@csswizardry.com>"
@@ -20,7 +20,8 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "OSS_Notice.pdf"
   ],
   "dependencies": {
     "px-colors-design": "https://github.com/PredixDev/px-colors-design.git#~0.2.0",
@@ -32,11 +33,11 @@
     "px-iconography-design": "https://github.com/PredixDev/px-iconography-design.git#~0.2.0",
     "px-starter-kit-design": "https://github.com/PredixDev/px-starter-kit-design.git#~0.4.0"
   },
-  "_release": "0.3.10",
+  "_release": "0.3.11",
   "_resolution": {
     "type": "version",
-    "tag": "v0.3.10",
-    "commit": "8e93a25b61090ac5e6a082cb2aa5769a928aacf3"
+    "tag": "v0.3.11",
+    "commit": "181f66326cd4dfde9ada91715ce6f9ef723953a6"
   },
   "_source": "https://github.com/predixDev/px-list-ui-design.git",
   "_target": "~v0.3.8",

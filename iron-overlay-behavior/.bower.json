@@ -1,6 +1,6 @@
 {
   "name": "iron-overlay-behavior",
-  "version": "1.7.4",
+  "version": "1.7.6",
   "license": "http://polymer.github.io/LICENSE.txt",
   "description": "Provides a behavior for making an element an overlay",
   "private": true,
@@ -35,11 +35,11 @@
   },
   "ignore": [],
   "homepage": "https://github.com/polymerelements/iron-overlay-behavior",
-  "_release": "1.7.4",
+  "_release": "1.7.6",
   "_resolution": {
     "type": "version",
-    "tag": "v1.7.4",
-    "commit": "fa31d048669aa076859ebe7c3aebd9101fe52c2c"
+    "tag": "v1.7.6",
+    "commit": "cd7f5ed66e4cde517646eec921331efe7d9d8544"
   },
   "_source": "git://github.com/polymerelements/iron-overlay-behavior.git",
   "_target": "^1.0.0",
