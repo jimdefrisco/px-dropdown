@@ -1,3 +1,11 @@
+v0.7.1
+=================
+* merge PR for long  word break 
+
+v0.7.0
+=================
+* Upgrade to Polymer 1.5.0
+
 v0.6.8
 =================
 * remove calculateRem from Sass
