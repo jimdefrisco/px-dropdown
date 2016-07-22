@@ -39,7 +39,7 @@
     "tag": "v0.3.11",
     "commit": "181f66326cd4dfde9ada91715ce6f9ef723953a6"
   },
-  "_source": "https://github.com/predixDev/px-list-ui-design.git",
-  "_target": "~v0.3.8",
-  "_originalSource": "https://github.com/predixDev/px-list-ui-design.git"
+  "_source": "https://github.com/PredixDev/px-list-ui-design.git",
+  "_target": "~0.3.0",
+  "_originalSource": "https://github.com/PredixDev/px-list-ui-design.git"
 }

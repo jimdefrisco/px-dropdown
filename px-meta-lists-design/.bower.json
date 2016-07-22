@@ -34,6 +34,6 @@
     "commit": "6dc8308aee4649d59ac95d538715097420d682aa"
   },
   "_source": "https://github.com/predixDev/px-meta-lists-design.git",
-  "_target": "~0.3.2",
-  "_originalSource": "https://github.com/predixDev/px-meta-lists-design.git"
+  "_target": "^0.3.4",
+  "_originalSource": "px-meta-lists-design"
 }
