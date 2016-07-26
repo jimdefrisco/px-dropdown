@@ -1,6 +1,6 @@
 {
   "name": "px-dropdown",
-  "version": "0.10.2",
+  "version": "0.10.3",
   "main": [
     "px-dropdown.html"
   ],
@@ -40,7 +40,6 @@
     "px-meta-lists-design": "^0.3.4"
   },
   "resolutions": {
-    "polymer": "^1.1.0",
-    "px-viewport-design": "~0.4.1"
+    "polymer": "^1.1.0"
   }
 }
