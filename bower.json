@@ -1,6 +1,6 @@
 {
   "name": "px-dropdown",
-  "version": "0.10.5",
+  "version": "0.11.0",
   "main": [
     "px-dropdown.html"
   ],
@@ -43,6 +43,6 @@
     "px-meta-lists-design": "^0.3.4"
   },
   "resolutions": {
-    "px-clipboard": "^0.0.11"
+    "px-dropdown": "^0.11.0"
   }
 }
