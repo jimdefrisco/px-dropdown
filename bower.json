@@ -1,6 +1,6 @@
 {
   "name": "px-dropdown",
-  "version": "0.12.0",
+  "version": "0.12.1",
   "main": [
     "px-dropdown.html"
   ],
@@ -42,11 +42,8 @@
     "px-meta-lists-design": "^0.3.4"
   },
   "resolutions": {
-    "px-theme": "^1.1.2",
-    "px-typography-design": "^1.1.0",
-    "iron-ajax": "^1.0.0",
-    "px-dropdown": "^0.12.0",
-    "px-clipboard": "^0.1.1",
-    "px-tooltip": "~0.8.0"
+    "iron-ajax": "^1.4.3",
+    "px-typography-design": "~1.1.1",
+    "px-theme": "~1.1.2"
   }
 }
