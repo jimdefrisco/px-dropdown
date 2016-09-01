@@ -28,8 +28,11 @@ Element providing the content for the px-dropdown element
     <style include="px-dropdown-content-styles"></style>
     <style include="px-theme-styles"></style>
     <div class="px-dropdown--content" id="dropdown" hidden$="{{!menuOpen}}">
+      <template is="dom-if" if="{{enableSearch}}">
+        <input class="text-input" type="text" placeholder="{{_searchString}}" value="{{_searchString::keyup}}" />
+      </template>
       <ul class="px-dropdown--list list-bare">
-        <template is="dom-repeat" items={{computedItems}} strip-whitespace>
+        <template id="dropdownItems" is="dom-repeat" items={{computedItems}} filter="_searchItems" strip-whitespace>
           <li class="px-dropdown--listitem u-p--" on-tap="_clickItem" value="{{index}}">
             <template is="dom-if" if="{{checkboxMode}}" strip-whitespace>
               <input type="checkbox" on-change="_checkChanged" checked="{{item.checked}}" class="px-dropdown--checkbox">
@@ -117,6 +120,15 @@ Element providing the content for the px-dropdown element
         observer: '_maxContCharacterWidthChanged'
       },
       /**
+       * Whether to include typeahead functionality within the dropdown for searching items.
+       * @type Boolean
+       * @default true
+       */
+      enableSearch: {
+        type: Boolean,
+        value: true
+      },
+      /**
        * An attribute which specifies if the dropdown should extend in width
        * beyond the cell it's dropping from.
        * Optional.
@@ -188,6 +200,13 @@ Element providing the content for the px-dropdown element
       checkboxMode: {
         type: Boolean,
         value:false
+      },
+      /**
+       * Contents of the search box, used for filtering the items displayed in the dropdown.
+       */
+      _searchString: {
+        type: String,
+        observer: '_performSearch'
       }
     },
     _maxContCharacterWidthChanged: function(newValue) {
@@ -415,6 +434,21 @@ Element providing the content for the px-dropdown element
           return computedItemsArr;
         }
       }
-    }
+    },
+    /**
+     * Used to filter the dom-repeat for dropdown items based on the search query.
+     * @method _searchItems
+     * @param item (object)
+     */
+     _searchItems: function(item) {
+       return this._searchString ? item.val.indexOf(this._searchString) > -1 : true;
+     },
+     /**
+      * Re-renders the dropdown items based on the filter logic in _searchItems
+      * @method _performSearch
+      */
+     _performSearch: function() {
+       this.$.dropdownItems.render();
+     }
   });
 </script>
