@@ -1,37 +1,41 @@
 {
   "name": "px-meta-lists-design",
-  "version": "0.3.4",
+  "version": "0.3.7",
   "authors": [
     "General Electric",
     "Harry Roberts <harry@csswizardry.com>"
   ],
-  "description": "Shortcut collection of list modules for Predix Experience",
+  "description": "Shortcut collection of list modules for Predix UI",
   "main": "_meta.lists.scss",
   "keywords": [
     "px",
     "sass",
     "lists"
   ],
-  "license": "Apache 2",
   "homepage": "https://github.com/PredixDev/px-meta-lists-design.git",
   "private": false,
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
-    "test",
-    "tests"
+    "sass",
+    ".github",
+    "OSS_Notice.pdf"
   ],
   "dependencies": {
-    "px-list-bare-design": "https://github.com/PredixDev/px-list-bare-design.git#~0.2.0",
-    "px-list-inline-design": "https://github.com/PredixDev/px-list-inline-design.git#~0.2.0",
-    "px-list-ui-design": "https://github.com/PredixDev/px-list-ui-design.git#~0.3.0"
+    "px-list-bare-design": "~0.2.0",
+    "px-list-inline-design": "~0.2.0",
+    "px-list-ui-design": "~0.3.0"
   },
-  "_release": "0.3.4",
+  "devDependencies": {
+    "px-sass-doc": "~0.2.0",
+    "px-starter-kit-design": "~0.6.0"
+  },
+  "_release": "0.3.7",
   "_resolution": {
     "type": "version",
-    "tag": "v0.3.4",
-    "commit": "6dc8308aee4649d59ac95d538715097420d682aa"
+    "tag": "v0.3.7",
+    "commit": "546d1ba972f52798bb9dca246a8034d98451ef0e"
   },
   "_source": "https://github.com/predixDev/px-meta-lists-design.git",
   "_target": "^0.3.4",
