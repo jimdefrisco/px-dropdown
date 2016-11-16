@@ -1,13 +1,13 @@
 {
   "name": "px-dropdown",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "main": [
     "px-dropdown.html"
   ],
   "ignore": [
     ".*",
     "npm-debug.log",
-    "Gruntfile.js",
+    "gulpfile.js",
     "sass",
     "bower_components",
     "node_modules",
@@ -42,11 +42,11 @@
     "px-meta-lists-design": "^0.3.4"
   },
   "resolutions": {
-    "px-functions-design": "~1.0.0",
-    "px-typography-design": "^1.1.1",
-    "iron-ajax": "^1.0.0",
-    "px-defaults-design": "~0.3.0",
+    "iron-ajax": "^1.4.3",
     "px-iconography-design": "^0.3.1",
-    "px-theme": "^1.1.2"
+    "px-theme": "^1.1.2",
+    "px-functions-design": "~1.0.0",
+    "px-defaults-design": "^0.3.0",
+    "px-typography-design": "^1.1.3"
   }
 }
