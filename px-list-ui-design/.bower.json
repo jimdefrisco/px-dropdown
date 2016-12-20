@@ -1,6 +1,6 @@
 {
   "name": "px-list-ui-design",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "authors": [
     "General Electric",
     "Harry Roberts <harry@csswizardry.com>"
@@ -22,18 +22,18 @@
     "OSS_Notice.pdf"
   ],
   "dependencies": {
-    "px-colors-design": "~0.2.20",
-    "px-defaults-design": "~0.3.0"
+    "px-colors-design": "^0.3.0",
+    "px-defaults-design": "^1.0.2"
   },
   "devDependencies": {
     "px-sass-doc": "^0.3.0",
     "px-starter-kit-design": "^0.7.0"
   },
-  "_release": "1.1.0",
+  "_release": "1.1.2",
   "_resolution": {
     "type": "version",
-    "tag": "v1.1.0",
-    "commit": "60b9187df584a20b1d43e0e5fd5e35cb4fa93289"
+    "tag": "v1.1.2",
+    "commit": "6e68844b2f6e0a9382051b1b9f11bac597d360e3"
   },
   "_source": "https://github.com/predixDev/px-list-ui-design.git",
   "_target": "^1.1.0",

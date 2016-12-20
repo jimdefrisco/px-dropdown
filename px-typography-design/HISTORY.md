@@ -1,3 +1,11 @@
+v1.2.2
+=================
+* Update colors dependencies
+
+v1.2.1
+==================
+* Update missed design depndencies
+
 v1.2.0
 ==================
 * Updated dependencies

@@ -1,3 +1,11 @@
+v1.1.2
+==================
+* Update missed design depndencies
+
+v1.1.1
+==================
+* Update missed design depndencies
+
 v1.1.0
 ==================
 * Updated dependencies

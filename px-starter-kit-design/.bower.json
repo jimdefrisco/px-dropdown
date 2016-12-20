@@ -1,6 +1,6 @@
 {
   "name": "px-starter-kit-design",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "authors": [
     "General Electric",
     "Harry Roberts <harry@csswizardry.com>"
@@ -25,7 +25,7 @@
   "dependencies": {
     "inuit-clearfix": "~0.2.2",
     "px-box-sizing-design": "^0.2.0",
-    "px-colors-design": "^0.2.0",
+    "px-colors-design": "^0.3.0",
     "px-flexbox-design": "^0.4.0",
     "px-helpers-design": "^0.3.0",
     "px-normalize-design": "^0.4.0",
@@ -45,11 +45,11 @@
     "px-code-design": "^1.1.0",
     "px-polymer-font-awesome": "^1.1.0"
   },
-  "_release": "0.7.0",
+  "_release": "0.7.1",
   "_resolution": {
     "type": "version",
-    "tag": "v0.7.0",
-    "commit": "b17ecd93ff9e01b49836150541c43e3ecae4c5af"
+    "tag": "v0.7.1",
+    "commit": "e70a397b220f936abd45eba3ca58105295fb09dc"
   },
   "_source": "https://github.com/predixDev/px-starter-kit-design.git",
   "_target": "^0.7.0",
